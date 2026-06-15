@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import TerminalHeader from "./components/TerminalHeader";
 import CommandPromt from "./components/CommandPromt";
+import TestCommand from "./components/TestCommand";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
+  const [commandContent, setCommandContent] = useState<React.ReactElement | null>(null);
   // console.log(open);
-
   const handleCommand = (command: string) => {
-    console.log(command + " is requested.");
+    if (command.trim().toLowerCase() === "test") {
+      setCommandContent(
+        <TestCommand />
+      )
+    } else if (command.trim().toLowerCase() === "clear" || command.trim().toLowerCase() === "cls") {
+      setCommandContent(null);
+    }
   }
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,8 +39,8 @@ function App() {
         {/* Terminal Body */}
         <div className={"p-4 h-full " + (open ? "" : "hidden")}>
           {/* Output of previous command */}
-          <div className=" w-full h-[85%]"> {/* height is only for debugging purpose */}
-
+          <div className="font-ubuntu text-white text-lg w-full h-[85%]"> {/* height is only for debugging purpose */}
+            {commandContent}
           </div>
           <div className="">
             <CommandPromt handleCommand={handleCommand} />
