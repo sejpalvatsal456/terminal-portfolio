@@ -3,13 +3,17 @@ import TerminalHeader from "./components/TerminalHeader";
 import CommandPromt from "./components/CommandPromt";
 
 function App() {
-  const [open, setOpen] = useState(false);
-  console.log(open);
+  const [open, setOpen] = useState<boolean>(false);
+  // console.log(open);
+
+  const handleCommand = (command: string) => {
+    console.log(command + " is requested.");
+  }
 
   useEffect(() => {
     setTimeout(() => {
       setOpen(true);
-    }, 500);
+    }, 50);
   }, []);
 
   return (
@@ -25,8 +29,14 @@ function App() {
         {/* Terminal Header */}
         <TerminalHeader open={open} />
         {/* Terminal Body */}
-        <div className="p-4">
-          <CommandPromt />
+        <div className={"p-4 h-full " + (open ? "" : "hidden")}>
+          {/* Output of previous command */}
+          <div className=" w-full h-[85%]"> {/* height is only for debugging purpose */}
+
+          </div>
+          <div className="">
+            <CommandPromt handleCommand={handleCommand} />
+          </div>
         </div>
       </div>
     </main>
