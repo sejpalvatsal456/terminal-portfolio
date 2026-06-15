@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+@import 'tailwindcss';
+
+
+#terminal-screen {
+    width: 10%;
+    height: 10%;
+}
+
+.terminal-open {
+    animation: terminal-open-animation .3s ease-out forwards;
+}
+
+.font-ubuntu {
+    font-family: "Ubuntu Sans";
+}
+
+/* Animations */
+
+@keyframes terminal-open-animation {
+    from {
+        width: 10%;
+        height: 10%;
+    }
+
+    to {
+        width: 50%;
+        height: 70%;
+    }
+}
