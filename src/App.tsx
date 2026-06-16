@@ -3,6 +3,7 @@ import TerminalHeader from "./components/TerminalHeader";
 import CommandPromt from "./components/CommandPromt";
 import TestCommand from "./commands/TestCommand";
 import StaticCommandPromt from "./components/StaticCommandPromt";
+import CommandError from "./commands/CommandError";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -17,6 +18,12 @@ function App() {
       ])
     } else if (command.trim().toLowerCase() === "clear" || command.trim().toLowerCase() === "cls") {
       setCommandContent([]);
+    } else {
+      setCommandContent(prev => [
+        ...prev,
+        <StaticCommandPromt command={command} />,
+        <CommandError command={command} />
+      ])
     }
   }
 
