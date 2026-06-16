@@ -4,6 +4,7 @@ import CommandPromt from "./components/CommandPromt";
 import TestCommand from "./commands/TestCommand";
 import StaticCommandPromt from "./components/StaticCommandPromt";
 import CommandError from "./commands/CommandError";
+import HelpCommand from "./commands/HelpCommand";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -16,9 +17,21 @@ function App() {
         <StaticCommandPromt command={command} />,
         <TestCommand />
       ])
-    } else if (command.trim().toLowerCase() === "clear" || command.trim().toLowerCase() === "cls") {
+    }
+
+    else if (command.trim().toLowerCase() === "help") {
+      setCommandContent(prev => [
+        ...prev,
+        <StaticCommandPromt command={command} />,
+        <HelpCommand />
+      ])
+    }
+    
+    else if (command.trim().toLowerCase() === "clear" || command.trim().toLowerCase() === "cls") {
       setCommandContent([]);
-    } else {
+    }
+    
+    else {
       setCommandContent(prev => [
         ...prev,
         <StaticCommandPromt command={command} />,

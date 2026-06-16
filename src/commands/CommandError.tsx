@@ -5,7 +5,7 @@ export default function CommandError(
 ) {
   return (
     <span className='text-red-500'>
-        Error: {command} command not found.
+        Error: <b>{command}</b> command not found.
     </span>
   )
 }
