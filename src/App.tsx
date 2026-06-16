@@ -5,40 +5,49 @@ import TestCommand from "./commands/TestCommand";
 import StaticCommandPromt from "./components/StaticCommandPromt";
 import CommandError from "./commands/CommandError";
 import HelpCommand from "./commands/HelpCommand";
+import WhoamiCommand from "./commands/WhoamiCommand";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
-  const [commandContent, setCommandContent] = useState<React.ReactElement[]>([]);
-  // console.log(open);
+  const [showCommandPrompt, setShowCommandPromt] = useState<boolean>(true);
+  const [commandContent, setCommandContent] = useState<React.ReactElement[]>(
+    [],
+  );
+
   const handleCommand = (command: string) => {
     if (command.trim().toLowerCase() === "test") {
-      setCommandContent(prev => [
+      setCommandContent((prev) => [
         ...prev,
         <StaticCommandPromt command={command} />,
-        <TestCommand />
-      ])
-    }
-
-    else if (command.trim().toLowerCase() === "help") {
-      setCommandContent(prev => [
+        <TestCommand />,
+      ]);
+    } else if (command.trim().toLowerCase() === "help") {
+      setCommandContent((prev) => [
         ...prev,
         <StaticCommandPromt command={command} />,
-        <HelpCommand />
-      ])
-    }
-    
-    else if (command.trim().toLowerCase() === "clear" || command.trim().toLowerCase() === "cls") {
+        <HelpCommand />,
+      ]);
+    } else if (command.trim().toLowerCase() === "whoami") {
+      setShowCommandPromt(false);
+      setCommandContent((prev) => [
+        ...prev,
+        <StaticCommandPromt command={command} />,
+        <WhoamiCommand />,
+      ]);
+      setTimeout(() => setShowCommandPromt(true), 3000);
+    } else if (
+      command.trim().toLowerCase() === "clear" ||
+      command.trim().toLowerCase() === "cls"
+    ) {
       setCommandContent([]);
-    }
-    
-    else {
-      setCommandContent(prev => [
+    } else {
+      setCommandContent((prev) => [
         ...prev,
         <StaticCommandPromt command={command} />,
-        <CommandError command={command} />
-      ])
+        <CommandError command={command} />,
+      ]);
     }
-  }
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -61,12 +70,16 @@ function App() {
         {/* Terminal Body */}
         <div className={"p-4 h-full " + (open ? "" : "hidden")}>
           {/* Output of previous command */}
-          <div className="font-ubuntu text-white text-lg w-full max-h-[85%]"> {/* height is only for debugging purpose */}
+          <div className="font-ubuntu text-white text-lg w-full max-h-[85%]">
+            {" "}
+            {/* height is only for debugging purpose */}
             {commandContent}
           </div>
-          <div className="">
-            <CommandPromt handleCommand={handleCommand} />
-          </div>
+          {showCommandPrompt ? (
+            <div>
+              <CommandPromt handleCommand={handleCommand} />
+            </div>
+          ) : null}
         </div>
       </div>
     </main>
