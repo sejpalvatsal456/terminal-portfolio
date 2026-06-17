@@ -6,12 +6,15 @@ import StaticCommandPromt from "./components/StaticCommandPromt";
 import CommandError from "./commands/CommandError";
 import HelpCommand from "./commands/HelpCommand";
 import WhoamiCommand from "./commands/WhoamiCommand";
+import StartupCommands from "./commands/StartupCommands";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
-  const [showCommandPrompt, setShowCommandPromt] = useState<boolean>(true);
+  const [showCommandPrompt, setShowCommandPromt] = useState<boolean>(false);
   const [commandContent, setCommandContent] = useState<React.ReactElement[]>(
-    [],
+    [
+      <StartupCommands />
+    ],
   );
 
   const handleCommand = (command: string) => {
@@ -53,6 +56,9 @@ function App() {
     setTimeout(() => {
       setOpen(true);
     }, 50);
+    setTimeout(() => {
+      setShowCommandPromt(true)
+    }, 8500);
   }, []);
 
   return (
