@@ -39,7 +39,7 @@ function App() {
     }, 50);
     setTimeout(() => {
       setShowCommandPromt(true);
-    }, 3100);
+    }, 4000);
   }, []);
 
   useEffect(() => {

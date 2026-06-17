@@ -2,6 +2,7 @@ import AboutCommand from "../commands/AboutCommand";
 import CommandError from "../commands/CommandError";
 import ContactCommand from "../commands/ContactCommand";
 import HelpCommand from "../commands/HelpCommand";
+import ProjectsCommand from "../commands/ProjectsCommand";
 import ResumeCommand from "../commands/ResumeCommand";
 import SkillsCommand from "../commands/SkillsCommand";
 import TestCommand from "../commands/TestCommand";
@@ -42,6 +43,12 @@ export const commandList: CommandType[] = [
     desc: "View tech stack",
     visible: true,
   }, 
+  {
+    name: "projects",
+    component: <ProjectsCommand />,
+    desc: "See my work",
+    visible: true
+  },
   {
     name: "resume",
     component: <ResumeCommand />,
