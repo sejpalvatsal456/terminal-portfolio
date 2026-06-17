@@ -8,6 +8,7 @@ import HelpCommand from "./commands/HelpCommand";
 import WhoamiCommand from "./commands/WhoamiCommand";
 import StartupCommands from "./commands/StartupCommands";
 import AboutCommand from "./commands/AboutCommand";
+import { commandParse } from "./utils/commandParser";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -23,43 +24,17 @@ function App() {
         ...prev,
         <StaticCommandPromt command={command} />,
       ]);
-    } else if (command.trim().toLowerCase() === "test") {
-      setCommandContent((prev) => [
-        ...prev,
-        <StaticCommandPromt command={command} />,
-        <TestCommand />,
-      ]);
-    } else if (command.trim().toLowerCase() === "help") {
-      setCommandContent((prev) => [
-        ...prev,
-        <StaticCommandPromt command={command} />,
-        <HelpCommand />,
-      ]);
-    } else if (command.trim().toLowerCase() === "whoami") {
-      setShowCommandPromt(false);
-      setCommandContent((prev) => [
-        ...prev,
-        <StaticCommandPromt command={command} />,
-        <WhoamiCommand />,
-      ]);
-      setTimeout(() => setShowCommandPromt(true), 1500);
-    } else if (command.trim().toLowerCase() === "about") {
-      setCommandContent((prev) => [
-        ...prev,
-        <StaticCommandPromt command={command} />,
-        <AboutCommand />,
-      ]);
     } else if (
       command.trim().toLowerCase() === "clear" ||
       command.trim().toLowerCase() === "cls"
     ) {
       setCommandContent([]);
     } else {
-      setCommandContent((prev) => [
+      setCommandContent(prev => [
         ...prev,
         <StaticCommandPromt command={command} />,
-        <CommandError command={command} />,
-      ]);
+        commandParse(command)
+      ])
     }
   };
 
