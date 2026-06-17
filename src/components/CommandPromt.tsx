@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type CommandPromtProps = {
   handleCommand: (command: string) => void;
@@ -36,7 +36,8 @@ export default function CommandPromt({ handleCommand }: CommandPromtProps) {
           onChange={(e) => setCommandInput(e.target.value)}
           autoFocus
           ref={inputRef}
-          className="bg-none text-white font-ubuntu text-lg w-full outline-none"
+          className="bg-none text-white font-ubuntu text-lg w-full outline-none caret-[#0f0]"
+          style={{ caretShape: "block" }}
         />
       </form>
     </div>
