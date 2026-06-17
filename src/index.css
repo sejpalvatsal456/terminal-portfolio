@@ -15,6 +15,41 @@
     font-family: "Ubuntu Sans";
 }
 
+/* Disabled scrollbar */
+/* .terminal-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.terminal-scrollbar {
+  scrollbar-width: none;
+} */
+
+/* Dark theme Scrollbar */
+
+/* Chrome, Edge, Safari */
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 999px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Firefox */
+.terminal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #444 #1e1e1e;
+}
+
 /* Animations */
 
 @keyframes terminal-open-animation {
@@ -28,3 +63,4 @@
         height: 70%;
     }
 }
+

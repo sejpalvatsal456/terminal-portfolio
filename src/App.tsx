@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import TerminalHeader from "./components/TerminalHeader";
 import CommandPromt from "./components/CommandPromt";
 import TestCommand from "./commands/TestCommand";
@@ -12,20 +12,18 @@ import AboutCommand from "./commands/AboutCommand";
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [showCommandPrompt, setShowCommandPromt] = useState<boolean>(false);
-  const [commandContent, setCommandContent] = useState<React.ReactElement[]>(
-    [
-      <StartupCommands />
-    ],
-  );
+  const [commandContent, setCommandContent] = useState<React.ReactElement[]>([
+    <StartupCommands />,
+  ]);
+  const outputRef = useRef<HTMLDivElement>(null);
 
   const handleCommand = (command: string) => {
     if (command.trim() === "") {
-      setCommandContent(prev => [
+      setCommandContent((prev) => [
         ...prev,
-        <StaticCommandPromt command={command} />
-      ])
-    }
-    else if (command.trim().toLowerCase() === "test") {
+        <StaticCommandPromt command={command} />,
+      ]);
+    } else if (command.trim().toLowerCase() === "test") {
       setCommandContent((prev) => [
         ...prev,
         <StaticCommandPromt command={command} />,
@@ -45,15 +43,13 @@ function App() {
         <WhoamiCommand />,
       ]);
       setTimeout(() => setShowCommandPromt(true), 1500);
-    }
-    else if (command.trim().toLowerCase() === "about") {
-      setCommandContent(prev => [
+    } else if (command.trim().toLowerCase() === "about") {
+      setCommandContent((prev) => [
         ...prev,
         <StaticCommandPromt command={command} />,
-        <AboutCommand />
-      ])
-    }
-     else if (
+        <AboutCommand />,
+      ]);
+    } else if (
       command.trim().toLowerCase() === "clear" ||
       command.trim().toLowerCase() === "cls"
     ) {
@@ -72,9 +68,15 @@ function App() {
       setOpen(true);
     }, 50);
     setTimeout(() => {
-      setShowCommandPromt(true)
+      setShowCommandPromt(true);
     }, 3100);
   }, []);
+
+  useEffect(() => {
+  if (outputRef.current) {
+    outputRef.current.scrollTop = outputRef.current.scrollHeight;
+  }
+}, [commandContent]);
 
   return (
     <main className="bg-[#2B2A4C] w-screen h-screen flex justify-center items-center">
@@ -91,7 +93,7 @@ function App() {
         {/* Terminal Body */}
         <div className={"p-4 h-full " + (open ? "" : "hidden")}>
           {/* Output of previous command */}
-          <div className="font-ubuntu text-white text-lg w-full max-h-[85%]">
+          <div ref={outputRef} className="font-ubuntu text-white text-lg w-full max-h-[85%] overflow-y-auto terminal-scrollbar">
             {" "}
             {/* height is only for debugging purpose */}
             {commandContent}
