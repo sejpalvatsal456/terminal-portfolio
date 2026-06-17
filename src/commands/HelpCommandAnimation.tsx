@@ -1,5 +1,5 @@
 import { ReactTyped } from "react-typed";
-import commandList from "../utils/commandList";
+import { commandList } from "../utils/commandParser";
 
 export default function HelpCommandAnimation() {
   const helpText = commandList
