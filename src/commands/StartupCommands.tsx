@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import StaticCommandPromt from "../components/StaticCommandPromt";
 import WhoamiCommand from "./WhoamiCommand";
-import HelpCommand from "./HelpCommand";
 import HelpCommandAnimation from "./HelpCommandAnimation";
 
 export default function StartupCommands() {
@@ -14,7 +13,7 @@ export default function StartupCommands() {
     }, 500);
     setTimeout(() => {
       setShowHelpCommand(true);
-    }, 3200);
+    }, 1500);
   }, []);
 
   return (

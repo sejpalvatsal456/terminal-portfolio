@@ -7,6 +7,7 @@ import CommandError from "./commands/CommandError";
 import HelpCommand from "./commands/HelpCommand";
 import WhoamiCommand from "./commands/WhoamiCommand";
 import StartupCommands from "./commands/StartupCommands";
+import AboutCommand from "./commands/AboutCommand";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -18,7 +19,13 @@ function App() {
   );
 
   const handleCommand = (command: string) => {
-    if (command.trim().toLowerCase() === "test") {
+    if (command.trim() === "") {
+      setCommandContent(prev => [
+        ...prev,
+        <StaticCommandPromt command={command} />
+      ])
+    }
+    else if (command.trim().toLowerCase() === "test") {
       setCommandContent((prev) => [
         ...prev,
         <StaticCommandPromt command={command} />,
@@ -37,8 +44,16 @@ function App() {
         <StaticCommandPromt command={command} />,
         <WhoamiCommand />,
       ]);
-      setTimeout(() => setShowCommandPromt(true), 3000);
-    } else if (
+      setTimeout(() => setShowCommandPromt(true), 1500);
+    }
+    else if (command.trim().toLowerCase() === "about") {
+      setCommandContent(prev => [
+        ...prev,
+        <StaticCommandPromt command={command} />,
+        <AboutCommand />
+      ])
+    }
+     else if (
       command.trim().toLowerCase() === "clear" ||
       command.trim().toLowerCase() === "cls"
     ) {
@@ -58,7 +73,7 @@ function App() {
     }, 50);
     setTimeout(() => {
       setShowCommandPromt(true)
-    }, 8500);
+    }, 3100);
   }, []);
 
   return (

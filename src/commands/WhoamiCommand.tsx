@@ -13,7 +13,7 @@ const WhoamiCommand = () => {
           "Full Stack Web Developer\nEngineer Student\nReact • NodeJS • MongoDB • NextJS",
         ]}
 				cursor={false}
-				speed={70}
+				speed={90}
       />
     </div>
   );

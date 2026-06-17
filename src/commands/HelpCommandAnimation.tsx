@@ -9,5 +9,5 @@ export default function HelpCommandAnimation() {
     )
     .join("<br />");
 
-  return <ReactTyped strings={[helpText]} typeSpeed={20} showCursor={false} />;
+  return <ReactTyped strings={[helpText]} typeSpeed={1} showCursor={false} />;
 }
