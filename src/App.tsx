@@ -1,13 +1,8 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TerminalHeader from "./components/TerminalHeader";
 import CommandPromt from "./components/CommandPromt";
-import TestCommand from "./commands/TestCommand";
 import StaticCommandPromt from "./components/StaticCommandPromt";
-import CommandError from "./commands/CommandError";
-import HelpCommand from "./commands/HelpCommand";
-import WhoamiCommand from "./commands/WhoamiCommand";
 import StartupCommands from "./commands/StartupCommands";
-import AboutCommand from "./commands/AboutCommand";
 import { commandParse } from "./utils/commandParser";
 
 function App() {

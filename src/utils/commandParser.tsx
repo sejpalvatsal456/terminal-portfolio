@@ -1,6 +1,7 @@
 import AboutCommand from "../commands/AboutCommand"
 import CommandError from "../commands/CommandError";
 import HelpCommand from "../commands/HelpCommand";
+import SkillsCommand from "../commands/SkillsCommand";
 import TestCommand from "../commands/TestCommand";
 import WhoamiCommand from "../commands/WhoamiCommand";
 
@@ -14,6 +15,7 @@ const commands: CommandType[] = [
   { name: "about", component: <AboutCommand /> },
   { name: "help", component: <HelpCommand /> },
   { name: "whoami", component: <WhoamiCommand /> },
+  { name: "skills", component: <SkillsCommand /> }
 ]
 
 export const commandParse = (inputCommand: string) => {
