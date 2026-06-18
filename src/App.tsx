@@ -55,7 +55,7 @@ function App() {
         className={`
           bg-[#1E1E1E] rounded-xl shadow-xl
           transition-all duration-300 ease-out
-          ${open ? "w-1/2 h-[70%]" : "w-[10%] h-[10%]"}
+          ${open ? "w-[80%] md:w-1/2 h-[70%]" : "w-[10%] h-[10%]"}
         `}
       >
         {/* Terminal Header */}

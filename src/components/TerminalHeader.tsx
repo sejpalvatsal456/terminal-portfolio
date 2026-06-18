@@ -11,7 +11,7 @@ export default function TerminalHeader({ open }: { open: boolean }) {
       </div>
       <div className={"flex gap-3 " + (open ? "" : "hidden")}>
         <img src={folderLogo} alt="" className="h-7" />
-        <span className="font-ubuntu text-white font-medium ">terminal</span>
+        <span className="font-ubuntu text-white font-medium ">portfolio</span>
       </div>
       <div className="w-[15%]"></div>
     </div>
